@@ -5,7 +5,7 @@ let btns = ["yellow", "red", "purple", "green"];
 
 let started = false;
 let level = 0;
-
+let h1 = document.querySelector("h1");
 let h2 = document.querySelector("h2");
 let highscore = localStorage.getItem("highscore") || 0;
 
@@ -63,6 +63,7 @@ function CheckAns(idx) {
             document.querySelector("body").style.backgroundColor = "#121212";
         }, 150);
         reset();
+        change();
         
     }
 }
@@ -90,3 +91,22 @@ function reset() {
 }
 
 document.getElementById("high-score").innerText = `High Score: ${highscore}`;
+
+function changecolor(color, delay){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            h1.style.color = color;
+            resolve();
+        }, delay);
+    });
+}
+async function change() {
+    await changecolor("red", 500);
+    await changecolor("yellow", 500);
+    await changecolor("green", 500);
+    await changecolor("purple", 500);
+    await changecolor("#00ffcc", 500);
+    
+    
+}
+change();
